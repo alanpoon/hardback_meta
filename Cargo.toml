@@ -1,0 +1,12 @@
+[package]
+name = "hardback_meta"
+version = "0.1.0"
+authors = ["alanpoon"]
+
+[dependencies]
+libloading = { version ="0.4.0",optional=true}
+
+[features]
+english =[]
+default = ["english"]
+hotload = ["libloading"]
