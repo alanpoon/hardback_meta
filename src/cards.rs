@@ -4,36 +4,39 @@ use std::collections::HashMap;
 pub struct BlowupCard {
     pub id: usize,
     pub theme: CardType,
-    pub crop: [(f64, f64, f64, f64); 2],
+    pub crop: [([f64; 2], [f64; 2]); 2],
 }
 
 #[derive(Clone,Debug)]
 pub enum CardType {
     Normal(usize, usize), //page_i,index
-    Rotatable(usize, usize, usize), //(normal_page_i,normal_index,rotate_index)
+    Rotatable(usize, usize, usize, usize), //(normal_page_i,normal_index,rotate_page_index,rotate_index)
 }
-fn sprite_config(ct: CardType) -> [(f64, f64, f64, f64); 2] {
+fn sprite_config(ct: CardType) -> [([f64; 2], [f64; 2]); 2] {
+    let portrait_info = SpriteInfo {
+        first: (100.0, 2130.0),
+        num_in_row: 3.0,
+        w_h: (480.0, 675.0),
+        pad: (0.0, 30.0, 0.0, 0.0),
+    };
+    let landscape_info = SpriteInfo {
+        first: (100.0, 1610.0),
+        num_in_row: 3.0,
+        w_h: (675.0, 480.0),
+        pad: (0.0, 0.0, 0.0, 30.0),
+    };
     match ct {
         CardType::Normal(_, index) => {
-            let (x_i, y_i) = ((index % 9) as f64, ((index / 9) as f64).floor());
-            let (x_margin, y_margin) = (5.0, 5.0);
-            let (x_cell, y_cell) = (200.0, 200.0);
-            [(x_i * x_cell as f64 + x_margin, y_i * y_cell + y_margin, x_cell, y_cell),
-             (0.0, 0.0, 0.0, 0.0)]
+            [portrait_info.src_rect(index as f64), portrait_info.src_rect(index as f64)]
         }
-        CardType::Rotatable(_, index, index2) => {
-            let (x_i, y_i) = ((index % 8) as f64, ((index / 8) as f64).floor());
-            let (x_r, y_r) = ((index2 % 8) as f64, ((index2 / 8) as f64).floor());
-            let (x_margin, y_margin) = (5.0, 5.0);
-            let (x_cell, y_cell) = (280.0, 200.0);
-            [(x_i * x_cell as f64 + x_margin, y_i * y_cell + y_margin, x_cell, y_cell),
-             (x_r * x_cell as f64 + x_margin, y_r * y_cell + y_margin, x_cell, y_cell)]
+        CardType::Rotatable(_, index, _, index2) => {
+            [portrait_info.src_rect(index as f64), portrait_info.src_rect(index2 as f64)]
         }
     }
 }
 macro_rules! blowupcard_map {
     ($(($id:expr,$theme:expr)),* $(,)*) => {{
-  let cards: HashMap<i32,BlowupCard> =[
+  let cards: HashMap<usize,BlowupCard> =[
         $(($id,BlowupCard{
                   id:$id,
                   theme:$theme,
@@ -44,7 +47,7 @@ macro_rules! blowupcard_map {
     }}
 }
 #[cfg(feature = "english")]
-pub fn populate() -> HashMap<i32, BlowupCard> {
+pub fn populate() -> HashMap<usize, BlowupCard> {
     blowupcard_map!{
        (0,CardType::Normal(0,0)),
        (1,CardType::Normal(0,1)),
@@ -72,13 +75,13 @@ pub fn populate() -> HashMap<i32, BlowupCard> {
        (24,CardType::Normal(2,6)),
        (25,CardType::Normal(2,7)),
        (26,CardType::Normal(2,8)),
-       (27,CardType::Rotatable(3,0,6)),
+       (27,CardType::Rotatable(3,0,22,6)),
        (28,CardType::Normal(3,1)),
-       (29,CardType::Rotatable(3,2,0)),
+       (29,CardType::Rotatable(3,2,22,0)),
        (30,CardType::Normal(3,3)),
-       (31,CardType::Rotatable(3,4,4)),
+       (31,CardType::Rotatable(3,4,22,4)),
        (32,CardType::Normal(3,5)),
-       (33,CardType::Rotatable(3,6,8)),
+       (33,CardType::Rotatable(3,6,22,8)),
        (34,CardType::Normal(3,7)), //end of adventure
        (35,CardType::Normal(3,8)),
        (36,CardType::Normal(4,0)),
@@ -105,15 +108,15 @@ pub fn populate() -> HashMap<i32, BlowupCard> {
        (57,CardType::Normal(6,3)),
        (58,CardType::Normal(6,4)),
        (59,CardType::Normal(6,5)),
-       (60,CardType::Rotatable(6,6,8)),
+       (60,CardType::Rotatable(6,6,23,8)),
        (61,CardType::Normal(6,7)),
        (62,CardType::Normal(6,8)),
        (63,CardType::Normal(7,0)),
-       (64,CardType::Rotatable(7,1,3)),
+       (64,CardType::Rotatable(7,1,24,3)),
        (65,CardType::Normal(7,2)),
        (66,CardType::Normal(7,3)),
-       (67,CardType::Rotatable(7,4,4)),
-       (68,CardType::Rotatable(7,5,1)),
+       (67,CardType::Rotatable(7,4,24,4)),
+       (68,CardType::Rotatable(7,5,24,1)),
        (69,CardType::Normal(7,6)),
        (70,CardType::Normal(7,7)),
        (71,CardType::Normal(7,8)),
@@ -141,12 +144,12 @@ pub fn populate() -> HashMap<i32, BlowupCard> {
        (93,CardType::Normal(10,3)),
        (94,CardType::Normal(10,4)),
        (95,CardType::Normal(10,5)),
-       (96,CardType::Rotatable(10,6,8)),
-       (97,CardType::Rotatable(10,7,5)),
-       (98,CardType::Rotatable(10,8,2)),
+       (96,CardType::Rotatable(10,6,25,8)),
+       (97,CardType::Rotatable(10,7,25,5)),
+       (98,CardType::Rotatable(10,8,25,2)),
        (99,CardType::Normal(11,0)),
        (100,CardType::Normal(11,1)),
-       (101,CardType::Rotatable(11,2,0)),
+       (101,CardType::Rotatable(11,2,26,0)),
        (102,CardType::Normal(11,3)),
        (103,CardType::Normal(11,4)),
        (104,CardType::Normal(11,5)),
@@ -174,14 +177,14 @@ pub fn populate() -> HashMap<i32, BlowupCard> {
        (126,CardType::Normal(14,0)),
        (127,CardType::Normal(14,1)),
        (128,CardType::Normal(14,2)),
-       (129,CardType::Rotatable(14,3,7)),
+       (129,CardType::Rotatable(14,3,27,7)),
        (130,CardType::Normal(14,4)),
        (131,CardType::Normal(14,5)),
        (132,CardType::Normal(14,6)),
-       (133,CardType::Rotatable(14,7,5)),
+       (133,CardType::Rotatable(14,7,27,5)),
        (134,CardType::Normal(14,8)),
-       (135,CardType::Rotatable(15,0,6)),
-       (136,CardType::Rotatable(15,1,3)),
+       (135,CardType::Rotatable(15,0,28,6)),
+       (136,CardType::Rotatable(15,1,28,3)),
        (137,CardType::Normal(15,2)),
        (138,CardType::Normal(15,3)),
        (139,CardType::Normal(15,4)),
@@ -245,4 +248,20 @@ pub fn populate() -> HashMap<i32, BlowupCard> {
        (199,CardType::Normal(21,8)),
        
    }
+}
+#[derive(Clone,Copy,PartialEq,Debug)]
+pub struct SpriteInfo {
+    pub first: (f64, f64), //left corner of first
+    pub num_in_row: f64,
+    pub w_h: (f64, f64),
+    pub pad: (f64, f64, f64, f64),
+}
+impl SpriteInfo {
+    pub fn src_rect(&self, index: f64) -> ([f64; 2], [f64; 2]) {
+        let s = self;
+        let (x, y) = (index % s.num_in_row as f64, (index / (s.num_in_row)).floor());
+        ([s.first.0 + x * s.w_h.0 + s.pad.0, s.first.1 - y * s.w_h.1 - s.pad.2],
+         [s.first.0 + (x + 1.0) * s.w_h.0 - s.pad.1, s.first.1 - (y + 1.0) * s.w_h.1 + s.pad.3])
+
+    }
 }

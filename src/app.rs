@@ -8,21 +8,19 @@ pub struct AppData {
     pub guess: String,
     pub title: String,
     pub info: String,
-    pub listcards: HashMap<i32, cards::ListCard>,
-    pub blowupcards: HashMap<i32, cards::BlowupCard>,
+    pub blowupcards: HashMap<usize, cards::BlowupCard>,
     pub texts: local::Local,
 }
 
 impl AppData {
     pub fn new(width: u32, height: u32, title: &str) -> AppData {
-        let (l, b) = cards::populate();
+        let b = cards::populate();
         AppData {
             width: width,
             height: height,
             guess: String::new(),
             title: title.to_owned(),
             info: "? X".to_owned(),
-            listcards: l,
             blowupcards: b,
             texts: local::Local::new(),
         }
@@ -56,6 +54,7 @@ pub enum Sprite {
     PAGEINTRO1,
     PAGEINTRO2,
     PAGECONTENT,
+    DOWNLOAD,
     PAGE1F,
     PAGE2F,
     PAGE3F,
@@ -80,10 +79,16 @@ pub enum Sprite {
     CARDS18,
     CARDS19,
     CARDS20,
+    CARDS21,
+    CARDS22,
+    CARDS23,
+    CARDS24,
+    CARDS25,
+    CARDS26,
+    CARDS27,
 }
 #[derive(Clone,Debug,PartialEq,Eq,Hash)]
 pub enum ResourceEnum {
-    Giveable(cards::Giveable),
     Font(Font),
     Blowup(i32),
     Decorate(Decorate),

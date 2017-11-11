@@ -26,7 +26,8 @@ pub struct Local {
     pub next: &'static str,
     pub previous: &'static str,
     pub skiptutorial: &'static str,
-    pub instructions: Vec<&'static str>,
+    pub instructions1: Vec<&'static str>,
+    pub instructions2: Vec<([f64; 4], Option<[f64; 4]>)>,
 }
 
 impl Local {
@@ -56,28 +57,36 @@ impl Local {
             next: "Next",
             previous: "Previous",
             skiptutorial: "Skip Tutorial",
-            instructions: vec!["12 cards are given to each players",
-                               "Draft phase: Each player must select one card from their own pile and add it to their hand. The rest of cards are passed clockwise",
-                               "First Tab shows either draft phase or play a card in your hand. You are given 12 cards, choose one to draft into your hand.",
-                               "This prompt panel will tell you what to do in each phase. This is the draft phase",
-                               "Each item is a card in your draft pile.",
-                               "The icons shown here is what the card gives you. At the end, it also tells you if this card is an action or thug or holding card.",
-                               "Select a card by clicking on it.",
-                               "You can see the card in full.",
-                               "Click Ok to confirm.",
-                               "First 2 rounds, there is only draft phase.",
-                               "For the rest of 10 rounds, there are Draft phase, play One Hand Card phase, Perform actions phase and Resolve Each Turn phase.",
-                               "Great, this is the third round, in play One Hand Card phase, we are going to play one card",
-                               "Hint, make sure you fulfill the card's requirement before playing, or else you will have to discard the card",
-                               "You can only fuflill the requirement with the cards in play.",
-                               "Hint, when you play your hand card, choose something that has no requirement!",
-                               "All the players will play their chosen hand card simultaneously, so at the bottom right of the card, there is a number to resolve the sequence.",
-                               "Time to click Ok to confirm.",
-                               "Click the players tab to see the cards that are in play",
-                               "In the players tab, you can also see the number of keys, guns, wrenches etc each player has.",
-                               "For Holding cards, there is a number in a bracket that shows the number of development markers on it. Each marker is worth $10,000 at the end of the game.",
-                               "One development marker is placed for each icon the holding has, and also for each matching icon the holding has with the other holdings the player has.",
-                               "That is all. Good Luck"],
+            instructions1: vec!["Work to pen your next masterpiece by earning prestige along the way.",
+                "You start with your own personalized deck of cards, using them to acquire better cards and reshuffle your deck throughout the game.",
+                "Each Player is dealt with 8 starting purchasing cards, each providing 1 cent, consisting of the letters: A,E,I,L,N,R,S,T ...",
+                                "and two starting prestige cards, each providing 1 Prestige point, selected at random.",
+                                "Each player shuffles their starting deck and draws their first hand of 5 cards",
+                                "Place 7 cards in the center, this will be the Offer Row. Each time after a player manages to complete a word, they may purchase a card from this row.",//5
+                                "Next, let's talk about the card basics.",
+                                "Letter. Use it to spell a word on your turn.",
+                                "Genre. The icon in the top-left below the letter. There are four genres.",
+                                "Genre. Mystery cards can uncover hidden cards and remove cards from the Offer Row.",
+                                "Genre. Horror cards terrify other players by providing the access to the Ink Remover and offering Coin and Prestige flexibility.",//10
+                                "Genre. Adventure cards are focused on quick and steady progress towards victory. They have abilities to obtain immediate prestige or trash the existing card.",
+                                "Genre. Romance cards can trash other cards and multiply other card Benefits.",
+                                "Basic Benefits. You get this benefit if you use this card to form a word.",
+                                "Genre Benefits. You only get this benefit if you use more than 1 card from this genre to form a word.",
+                                "Cost. The number of coins you need to pay for this card. You may trade 3 ink or ink remover to 1 coin for the card",//15
+
+                               ],
+            instructions2:vec![([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),//5
+            ([0.4, 0.7, 0.4, 0.3], None),
+            ([0.4, 0.7, 0.4, 0.3], Some([0.2,0.2,0.2,0.2])),
+            ([0.4, 0.7, 0.4, 0.3], Some([0.2,0.25,0.2,0.2])),
+            ([0.4, 0.7, 0.4, 0.3], None),
+            ([0.4, 0.7, 0.4, 0.3], None),//10
+            ([0.4, 0.7, 0.4, 0.3], None),
+            ([0.4, 0.7, 0.4, 0.3], None),
+            ([0.4, 0.7, 0.4, 0.3],  Some([0.24,0.3,0.3,0.3])),
+            ([0.4, 0.7, 0.4, 0.3],  Some([0.24,0.35,0.3,0.3])),
+            ([0.4, 0.7, 0.4, 0.3],  Some([0.2,0.39,0.2,0.2])),//15
+            ]
         }
     }
 }
