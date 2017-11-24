@@ -28,6 +28,13 @@ pub struct Local {
     pub skiptutorial: &'static str,
     pub instructions1: Vec<&'static str>,
     pub instructions2: Vec<([f64; 4], Option<[f64; 4]>)>,
+    //spell
+    pub draw_extra_card:&'static str,
+    pub submit:&'static str,
+    //overlay
+    pub use_ink:&'static str,
+    pub use_remover:&'static str,
+    pub use_timelessclassic:&'static str,
 }
 
 impl Local {
@@ -75,18 +82,23 @@ impl Local {
                                 "Cost. The number of coins you need to pay for this card. You may trade 3 ink or ink remover to 1 coin for the card",//15
 
                                ],
-            instructions2:vec![([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),([0.4, 0.7, 0.4, 0.3], None),//5
-            ([0.4, 0.7, 0.4, 0.3], None),
-            ([0.4, 0.7, 0.4, 0.3], Some([0.2,0.2,0.2,0.2])),
-            ([0.4, 0.7, 0.4, 0.3], Some([0.2,0.25,0.2,0.2])),
-            ([0.4, 0.7, 0.4, 0.3], None),
-            ([0.4, 0.7, 0.4, 0.3], None),//10
-            ([0.4, 0.7, 0.4, 0.3], None),
-            ([0.4, 0.7, 0.4, 0.3], None),
-            ([0.4, 0.7, 0.4, 0.3],  Some([0.24,0.3,0.3,0.3])),
-            ([0.4, 0.7, 0.4, 0.3],  Some([0.24,0.35,0.3,0.3])),
-            ([0.4, 0.7, 0.4, 0.3],  Some([0.2,0.39,0.2,0.2])),//15
-            ]
+            instructions2:vec![([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),//5
+            ([0.1, 0.05, 0.7, 0.9], None),
+            ([0.1, 0.05, 0.7, 0.9], Some([0.2,0.2,0.2,0.2])),
+            ([0.1, 0.05, 0.7, 0.9], Some([0.2,0.25,0.2,0.2])),
+            ([0.1, 0.05, 0.7, 0.9], None),
+            ([0.1, 0.05, 0.7, 0.9], None),//10
+            ([0.1, 0.05, 0.7, 0.9], None),
+            ([0.1, 0.05, 0.7, 0.9], None),
+            ([0.1, 0.05, 0.7, 0.9],  Some([0.24,0.3,0.3,0.3])),
+            ([0.1, 0.05, 0.7, 0.9],  Some([0.24,0.35,0.3,0.3])),
+            ([0.1, 0.05, 0.7, 0.9],  Some([0.2,0.39,0.2,0.2])),//15
+            ],
+            draw_extra_card:"Draw extra card",
+            submit:"submit",
+            use_ink:"Use Ink",
+            use_remover:"Use Ink Remover",
+            use_timelessclassic:"Use Timeless Classic"
         }
     }
 }

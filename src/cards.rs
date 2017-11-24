@@ -7,17 +7,17 @@ pub struct BlowupCard {
     pub crop: [([f64; 2], [f64; 2]); 2],
 }
 
-#[derive(Clone,Debug)]
+#[derive(Clone,Debug,PartialEq)]
 pub enum CardType {
     Normal(usize, usize), //page_i,index
     Rotatable(usize, usize, usize, usize), //(normal_page_i,normal_index,rotate_page_index,rotate_index)
 }
 fn sprite_config(ct: CardType) -> [([f64; 2], [f64; 2]); 2] {
-    let portrait_info = SpriteInfo {
-        first: (100.0, 2130.0),
+    let portrait_info = SpriteInfo{
+        first: (90.0, 2130.0),
         num_in_row: 3.0,
-        w_h: (480.0, 675.0),
-        pad: (0.0, 30.0, 0.0, 0.0),
+        w_h: (510.0, 675.0),
+        pad: (10.0, 10.0, 0.0, 0.0),
     };
     let landscape_info = SpriteInfo {
         first: (100.0, 1610.0),
@@ -30,7 +30,7 @@ fn sprite_config(ct: CardType) -> [([f64; 2], [f64; 2]); 2] {
             [portrait_info.src_rect(index as f64), portrait_info.src_rect(index as f64)]
         }
         CardType::Rotatable(_, index, _, index2) => {
-            [portrait_info.src_rect(index as f64), portrait_info.src_rect(index2 as f64)]
+            [portrait_info.src_rect(index as f64), landscape_info.src_rect(index2 as f64)]
         }
     }
 }

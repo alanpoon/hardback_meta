@@ -86,6 +86,8 @@ pub enum Sprite {
     CARDS25,
     CARDS26,
     CARDS27,
+    BACKCARD,
+    GAMEICONS,
 }
 #[derive(Clone,Debug,PartialEq,Eq,Hash)]
 pub enum ResourceEnum {
