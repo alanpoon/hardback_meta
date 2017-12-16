@@ -3,8 +3,8 @@ use cards;
 use local;
 #[derive(Debug)]
 pub struct AppData {
-    pub width: u32,
-    pub height: u32,
+    pub ref_win_dim:[f64;2],
+    pub act_win_dim:[f64;2],
     pub guess: String,
     pub title: String,
     pub info: String,
@@ -13,11 +13,11 @@ pub struct AppData {
 }
 
 impl AppData {
-    pub fn new(width: u32, height: u32, title: &str) -> AppData {
+    pub fn new(width: f64, height: f64, title: &str) -> AppData {
         let b = cards::populate();
         AppData {
-            width: width,
-            height: height,
+            ref_win_dim: [1024.0,704.0],
+            act_win_dim: [width,height],
             guess: String::new(),
             title: title.to_owned(),
             info: "? X".to_owned(),
@@ -25,11 +25,23 @@ impl AppData {
             texts: local::Local::new(),
         }
     }
+    pub fn convert_w(&self,w:f64)->f64{
+        (w/self.ref_win_dim[0])*self.act_win_dim[0]
+    }
+    pub fn convert_h(&self,h:f64)->f64{
+        (h/self.ref_win_dim[1])*self.act_win_dim[1]
+    }
+    pub fn convert_dim(&self,dim:[f64;2])->[f64;2]{
+        [self.convert_w(dim[0]),self.convert_h(dim[1])]
+    }
 }
 
 #[derive(Clone,Debug,PartialEq,Eq,Hash)]
 pub enum Font {
     REGULAR,
+    BOLD,
+    ITALIC,
+    BOLDITALIC,
     BEON,
 }
 #[derive(Clone,Debug,PartialEq,Eq,Hash)]
@@ -45,6 +57,7 @@ pub enum Sprite {
     RUST,
     KEYPAD,
     BUTTON,
+    ARROWS,
     MAIN,
     FRAME,
     BOXCLOSURE,

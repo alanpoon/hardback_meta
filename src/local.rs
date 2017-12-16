@@ -33,8 +33,17 @@ pub struct Local {
     pub submit:&'static str,
     //overlay
     pub use_ink:&'static str,
+    pub use_ink_insufficent:&'static str,
     pub use_remover:&'static str,
+    pub use_remover_insufficent:&'static str,
     pub use_timelessclassic:&'static str,
+    pub buy:&'static str,
+    pub unused_coins:&'static str,
+    pub continue_without_buying:&'static str,
+    pub trash:&'static str,
+    pub trash_other:&'static str,
+    pub continue_without_trashing_other:&'static str,
+    pub are_you_sure_exit:&'static str,
 }
 
 impl Local {
@@ -66,20 +75,19 @@ impl Local {
             skiptutorial: "Skip Tutorial",
             instructions1: vec!["Work to pen your next masterpiece by earning prestige along the way.",
                 "You start with your own personalized deck of cards, using them to acquire better cards and reshuffle your deck throughout the game.",
-                "Each Player is dealt with 8 starting purchasing cards, each providing 1 cent, consisting of the letters: A,E,I,L,N,R,S,T ...",
-                                "and two starting prestige cards, each providing 1 Prestige point, selected at random.",
+                "Each Player is dealt with 8 starting purchasing cards, each providing 1 cent, consisting of the letters: A,E,I,L,N,R,S,T and two starting prestige cards, each providing 1 Prestige point, selected at random.",
                                 "Each player shuffles their starting deck and draws their first hand of 5 cards",
-                                "Place 7 cards in the center, this will be the Offer Row. Each time after a player manages to complete a word, they may purchase a card from this row.",//5
-                                "Next, let's talk about the card basics.",
+                                "Place 7 cards in the center, this will be the Offer Row. Each time after a player manages to complete a word, they may purchase a card from this row.",
+                                "Next, let's talk about the card basics.",//5
                                 "Letter. Use it to spell a word on your turn.",
                                 "Genre. The icon in the top-left below the letter. There are four genres.",
                                 "Genre. Mystery cards can uncover hidden cards and remove cards from the Offer Row.",
-                                "Genre. Horror cards terrify other players by providing the access to the Ink Remover and offering Coin and Prestige flexibility.",//10
-                                "Genre. Adventure cards are focused on quick and steady progress towards victory. They have abilities to obtain immediate prestige or trash the existing card.",
+                                "Genre. Horror cards terrify other players by providing the access to the Ink Remover and offering Coin and Prestige flexibility.",
+                                "Genre. Adventure cards are focused on quick and steady progress towards victory. They have abilities to obtain immediate prestige or trash the existing card.",//10
                                 "Genre. Romance cards can trash other cards and multiply other card Benefits.",
                                 "Basic Benefits. You get this benefit if you use this card to form a word.",
                                 "Genre Benefits. You only get this benefit if you use more than 1 card from this genre to form a word.",
-                                "Cost. The number of coins you need to pay for this card. You may trade 3 ink or ink remover to 1 coin for the card",//15
+                                "Cost. The number of coins you need to pay for this card. You may trade 3 ink or ink remover to 1 coin for the card",//14
 
                                ],
             instructions2:vec![([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),([0.1, 0.05, 0.7, 0.9], None),//5
@@ -97,8 +105,17 @@ impl Local {
             draw_extra_card:"Draw extra card",
             submit:"submit",
             use_ink:"Use Ink",
+            use_ink_insufficent:"You have insufficient ink.",
             use_remover:"Use Ink Remover",
-            use_timelessclassic:"Use Timeless Classic"
+            use_remover_insufficent:"You have insufficient ink remover.",
+            use_timelessclassic:"Use Timeless Classic",
+            buy:"Buy",
+            unused_coins:"Unused coins will be converted into ink. Subsequently, 3 inks have to be used for a value of one coin",
+            continue_without_buying:"Continue without buying",
+            trash:"Trash Card",
+            trash_other:"Pick a Card to trash for one cent",
+            continue_without_trashing_other:"Continue without trashing another card",
+            are_you_sure_exit:"Are you sure that you want to exit?"
         }
     }
 }
