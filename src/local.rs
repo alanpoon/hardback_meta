@@ -1,6 +1,8 @@
 #[derive(Debug)]
 pub struct Local {
-    pub menu: Vec<&'static str>,
+    pub multiplayer: &'static str,
+    pub credit: &'static str,
+    pub waiting_for_connection: &'static str,
     pub pick: &'static str,
     pub players: &'static str,
     pub lobby: &'static str,
@@ -50,7 +52,9 @@ impl Local {
     #[cfg(feature = "english")]
     pub fn new() -> Local {
         Local {
-            menu: vec!["Story Mode", "Multiplayer", "Credit"],
+            multiplayer:"Multiplayer",
+            credit:"Credit",
+            waiting_for_connection:"Waiting for connection...",
             pick: "Pick",
             players: "Players",
             lobby: "Lobby",

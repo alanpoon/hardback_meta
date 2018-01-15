@@ -43,11 +43,22 @@ pub enum Font {
     ITALIC,
     BOLDITALIC,
     BEON,
+    MYSTERY,
+    HORROR,
+    ADVENTURE,
+    ROMANCE,
 }
 #[derive(Clone,Debug,PartialEq,Eq,Hash)]
 pub enum Decorate {
     BACKGROUND,
     TITLE,
+}
+#[derive(Clone,Debug,PartialEq,Eq,Hash)]
+pub enum Texture {
+    PAGE1F,
+    PAGE2F,
+    PAGE3F,
+    PAGE4F,
 }
 #[derive(Clone,Debug,PartialEq,Eq,Hash)]
 pub enum Sprite {
@@ -68,46 +79,31 @@ pub enum Sprite {
     PAGEINTRO2,
     PAGECONTENT,
     DOWNLOAD,
-    PAGE1F,
-    PAGE2F,
-    PAGE3F,
-    PAGE4F,
-    CARDS1,
-    CARDS2,
-    CARDS3,
-    CARDS4,
-    CARDS5,
-    CARDS6,
-    CARDS7,
-    CARDS8,
-    CARDS9,
-    CARDS10,
-    CARDS11,
-    CARDS12,
-    CARDS13,
-    CARDS14,
-    CARDS15,
-    CARDS16,
-    CARDS17,
-    CARDS18,
-    CARDS19,
-    CARDS20,
-    CARDS21,
-    CARDS22,
-    CARDS23,
-    CARDS24,
-    CARDS25,
-    CARDS26,
-    CARDS27,
     BACKCARD,
     GAMEICONS,
+    CLOUDY,
+    COININFO,
+    COININFO270,
+    UNOFFICIAL,
 }
+#[derive(Clone,Debug,PartialEq,Eq,Hash)]
+pub enum MusicEnum {
+    BACKGROUND,
+}
+#[derive(Clone,Debug,PartialEq,Eq,Hash)]
+pub enum ChunkEnum {
+    PAGEFLIP,
+}
+
 #[derive(Clone,Debug,PartialEq,Eq,Hash)]
 pub enum ResourceEnum {
     Font(Font),
     Blowup(i32),
     Decorate(Decorate),
     Sprite(Sprite),
+    Texture(Texture),
+    Music(MusicEnum),
+    Chunk(ChunkEnum),
 }
 
 #[cfg(feature = "english")]
@@ -129,9 +125,7 @@ pub fn get_background_path() -> &'static str {
 pub fn get_rust_path() -> &'static str {
     "images/rust.png"
 }
-pub fn get_button_path() -> &'static str {
-    "images/Flat Buttons.png"
-}
+
 pub fn get_main_path() -> &'static str {
     "images/main.jpg"
 }

@@ -4,8 +4,8 @@ use std::collections::HashMap;
 pub struct BlowupCard {
     pub id: usize,
     pub theme: CardType,
-    pub non_genre: Option<String>,
-    pub genre: Option<String>,
+    pub non_genre_string: Option<String>,
+    pub genre_string: Option<String>,
     pub crop: [([f64; 2], [f64; 2]); 2],
 }
 
@@ -37,13 +37,13 @@ fn sprite_config(ct: CardType) -> [([f64; 2], [f64; 2]); 2] {
     }
 }
 macro_rules! blowupcard_map {
-    ($(($id:expr,$theme:expr,$non_genre:expr,$genre:expr)),* $(,)*) => {{
+    ($(($id:expr,$theme:expr,$non_genre_string:expr,$genre_string:expr)),* $(,)*) => {{
   let cards: HashMap<usize,BlowupCard> =[
         $(($id,BlowupCard{
                   id:$id,
                   theme:$theme,
-                  non_genre:$non_genre,
-                  genre:$genre,
+                  non_genre_string:$non_genre_string,
+                  genre_string:$genre_string,
                   crop:sprite_config($theme),
              }),)*
                ].iter().cloned().collect();
