@@ -3,6 +3,10 @@ pub struct Local {
     pub multiplayer: &'static str,
     pub credit: &'static str,
     pub waiting_for_connection: &'static str,
+    //server_lookup
+    pub connect: &'static str,
+    pub found_server: &'static str,
+    pub server_err: &'static str,
     pub pick: &'static str,
     pub players: &'static str,
     pub lobby: &'static str,
@@ -46,6 +50,7 @@ pub struct Local {
     pub trash_other: &'static str,
     pub continue_without_trashing_other: &'static str,
     pub are_you_sure_exit: &'static str,
+    
 }
 
 impl Local {
@@ -55,6 +60,9 @@ impl Local {
             multiplayer:"Multiplayer",
             credit:"Credit",
             waiting_for_connection:"Waiting for connection...",
+            connect: "Connect",
+            found_server: "Found Server, connecting..",
+            server_err: "Cannot find Server",
             pick: "Pick",
             players: "Players",
             lobby: "Lobby",
